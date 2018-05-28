@@ -1,0 +1,25 @@
+#  This file is part of dracut.
+#
+# See dracut.bootup(7) for details
+
+[Unit]
+Description=Dracut Emergency Shell via getty
+DefaultDependencies=no
+After=systemd-vconsole-setup.service
+Wants=systemd-vconsole-setup.service
+Conflicts=shutdown.target emergency.target
+ConditionPathExists=/dev/tty0
+
+[Service]
+Environment=HOME=/
+Environment=DRACUT_SYSTEMD=1
+Environment=NEWROOT=/sysroot
+WorkingDirectory=/
+ExecStart=-/sbin/agetty --skip-login --login-program /bin/dracut-emergency --noclear tty0 $TERM
+ExecStopPost=-/bin/rm -f -- /.console_lock
+Type=oneshot
+TTYPath=/dev/tty0
+TTYVHangup=yes
+KillMode=process
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
