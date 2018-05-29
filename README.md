@@ -42,7 +42,7 @@ See also [Fedora Bug 1031015  dracut shell doesn't start
 
 ## Solution
 
-Dracut-serial  includes `agetty` to start the dracut emergency
+Dracut-serial  includes a [getty][getty] (`agetty`) to start the dracut emergency
 shell (i.e. `/bin/dracut-emergency`) on `/dev/ttyS0, as well. It
 overrides the `dracut-emergency.service` such that it always
 uses `/dev/tty0`. In that way both services are independent of
@@ -122,6 +122,7 @@ the system.
 
 [bug1031015]: https://bugzilla.redhat.com/show_bug.cgi?id=1031015#c5
 [dracut]: https://dracut.wiki.kernel.org/index.php/Main_Page
+[getty]: https://en.wikipedia.org/wiki/Getty_(Unix)
 [grub2]: https://www.coreboot.org/Serial_console#GRUB2
 [kernel]: https://www.kernel.org/doc/html/v4.15/admin-guide/serial-console.html
 [late]: http://0pointer.de/blog/projects/serial-console.html
