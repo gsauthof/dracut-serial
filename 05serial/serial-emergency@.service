@@ -8,7 +8,6 @@ DefaultDependencies=no
 ExecStart=-/sbin/agetty --skip-login --login-program /bin/dracut-emergency --noclear --keep-baud 115200,38400,9600 %I $TERM
 Type=idle
 Restart=always
-UtmpIdentifier=%I
 TTYPath=/dev/%I
 TTYReset=yes
 TTYVHangup=yes
