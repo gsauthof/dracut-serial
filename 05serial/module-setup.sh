@@ -16,6 +16,12 @@ depends() {
 }
 
 # called by dracut
+# i.e. during: dracut --print-cmdline
+cmdline() {
+    printf " plymouth.enable=0"
+}
+
+# called by dracut
 install() {
     inst agetty
     inst_simple "${moddir}/serial-emergency@.service" "$systemdsystemunitdir/serial-emergency@.service"

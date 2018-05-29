@@ -63,12 +63,20 @@ Copy the `46sshd` subdirectory to the [Dracut][dracut] module directory:
 
     # cp -ri 05serial /usr/lib/dracut/modules.d
 
+Disable Plymouth as it can't be told to just deal with tty0 and
+leave other ttys alone (`--tty` isn't sufficient on Fedora 28):
+
+    # cp dracut.conf.d/serial.conf /etc/dracut.conf.d
+    # sed -i 's/^\(GRUB_CMDLINE_LINUX="\)/\1plymouth.enable=0 /' /etc/sysconfig/grub
+    # grub2-mkconfig -o  /etc/grub2.cfg
+    # grub2-mkconfig -o  /etc/grub2-efi.cfg
+
 Regenerate the initramfs:
 
     # dracut -f -v
 
-Verify that this `sshd` module is included. Either via inspecting the verbose
-output or via `lsinitrd`. Reboot.
+Verify that this `serial` module is included. Either via
+inspecting the verbose output or via `lsinitrd`. Reboot.
 
 
 ## Emergency Shell
