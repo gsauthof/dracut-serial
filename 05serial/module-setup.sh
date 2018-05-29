@@ -27,6 +27,7 @@ install() {
     inst_simple "${moddir}/serial-emergency@.service" "$systemdsystemunitdir/serial-emergency@.service"
     inst_simple "${moddir}/dracut-emergency.service" "$systemdsystemconfdir/dracut-emergency.service"
     inst_simple "${moddir}/systemd-ask-password-serial.service" "$systemdsystemunitdir/systemd-ask-password-serial.service"
+    inst_simple "${moddir}/systemd-ask-password-console.service" "$systemdsystemconfdir/systemd-ask-password-console.service"
     systemctl --root "$initdir" enable serial-emergency@ttyS0.service
     systemctl --root "$initdir" enable systemd-ask-password-serial.service
     return 0
