@@ -1,9 +1,18 @@
 This [Dracut ][dracut] module (dracut-serial) improves serial
-access to initramfs early userspace. With it enabled it's
+access to initramfs early userspace (on certain Linux
+distribution versions). With it enabled it's
 possible to unlock encrypted devices or deal with the emergency
 shell over a serial connection in addition to the system console.
 
 2018, Georg Sauthoff <mail@gms.tf>, GPLv3+
+
+**2019-01-06**: Note that this module isn't necessary anymore
+under Fedora 29. There it's sufficient to disable Plymouth and add
+something like `console=tty0 console=ttyS0,115200` to the kernel
+command line to get early userspace output to both the system
+console and the serial one. That means that also unlocking
+encrypted volumes does work over the serial console, by default,
+with Fedora 29.
 
 ## Problem
 
